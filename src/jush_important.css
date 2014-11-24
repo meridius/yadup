@@ -1,0 +1,34 @@
+/*
+* This file is the same as jush.css with exeption of added !important rule so it can override Tracy's defaults
+*/
+
+.jush { color: black !important; }
+.jush-htm_com, .jush-com, .jush-com_code, .jush-one, .jush-php_doc, .jush-php_com, .jush-php_one, .jush-js_one, .jush-js_doc { color: gray !important; }
+.jush-php, .jush-php_new, .jush-php_fun { color: #000033 !important; background-color: #FFF0F0 !important; }
+.jush-php_quo, .jush-quo, .jush-quo_one, .jush-php_eot, .jush-apo, .jush-sql_apo, .jush-sqlite_apo, .jush-sql_quo, .jush-sql_eot { color: green !important; }
+.jush-php_apo { color: #009F00 !important; }
+.jush-php_quo_var, .jush-php_var, .jush-sql_var { font-style: italic !important; }
+.jush-php_apo .jush-php_quo_var, .jush-php_apo .jush-php_var { font-style: normal !important; }
+.jush-php_halt2 { background-color: white !important; color: black !important; }
+.jush-tag_css, .jush-att_css .jush-att_quo, .jush-att_css .jush-att_apo, .jush-att_css .jush-att_val { color: black !important; background-color: #FFFFE0 !important; }
+.jush-tag_js, .jush-att_js .jush-att_quo, .jush-att_js .jush-att_apo, .jush-att_js .jush-att_val, .jush-css_js { color: black !important; background-color: #F0F0FF !important; }
+.jush-tag, .jush-xml_tag { color: navy !important; }
+.jush-att, .jush-xml_att, .jush-att_js, .jush-att_css, .jush-att_http { color: teal !important; }
+.jush-att_quo, .jush-att_apo, .jush-att_val { color: purple !important; }
+.jush-ent { color: purple !important; }
+.jush-js_reg { color: navy !important; }
+.jush-php_sql .jush-php_quo, .jush-php_sql .jush-php_apo,
+.jush-php_sqlite .jush-php_quo, .jush-php_sqlite .jush-php_apo,
+.jush-php_pgsql .jush-php_quo, .jush-php_pgsql .jush-php_apo,
+.jush-php_mssql .jush-php_quo, .jush-php_mssql .jush-php_apo,
+.jush-php_oracle .jush-php_quo, .jush-php_oracle .jush-php_apo
+{ background-color: #FFBBB0 !important; }
+.jush-bac, .jush-php_bac, .jush-bra, .jush-mssql_bra, .jush-sqlite_quo { color: red !important; }
+.jush-num, .jush-clr { color: #007F7F !important; }
+
+.jush a { color: navy !important; }
+.jush a:hover { background-color: #cbe1e1 !important; } 
+.jush-sql a, .jush-sql_code a, .jush-sqlite a, .jush-pgsql a, .jush-mssql a, .jush-oracle a { font-weight: bold !important; }
+.jush-php_sql .jush-php_quo a, .jush-php_sql .jush-php_apo a { font-weight: normal !important; }
+.jush-tag a, .jush-att a, .jush-apo a, .jush-quo a, .jush-php_apo a, .jush-php_quo a, .jush-php_eot2 a { color: inherit !important; color: expression(parentNode.currentStyle.color) !important; }
+a.jush-custom:link, a.jush-custom:visited { font-weight: normal !important; color: inherit !important; color: expression(parentNode.currentStyle.color) !important; }

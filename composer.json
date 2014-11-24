@@ -1,0 +1,29 @@
+{
+	"name": "meridius/yadup",
+	"type": "library",
+	"description": "Database updator for Nette/Tracy panel",
+	"keywords": ["yadup", "database", "db", "updator", "panel", "nette", "tracy"],
+	"homepage": "https://github.com/meridius/yadup",
+	"license": "Apache-2.0",
+	"authors": [
+		{
+			"name": "Martin Lukeš",
+			"homepage": "https://github.com/meridius/yadup"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/meridius/yadup/issues"
+	},
+	"require": {
+		"nette/di": "~2.2.0",
+		"nette/utils": "~2.2.0",
+		"nette/finder": "~2.2.0",
+		"tracy/tracy": "~2.2.0",
+		"nette/database": "~2.2"
+	},
+	"autoload": {
+		"psr-4": {
+			"Yadup\\": "src/"
+		}
+	}
+}

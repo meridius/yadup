@@ -1,0 +1,102 @@
+#tracy-debug .yadup-updates-count span:hover {
+  font-weight: bolder; }
+#tracy-debug .yadup-heading h1, #tracy-debug .yadup-heading input {
+  display: inline; }
+#tracy-debug .yadup-controls,
+#tracy-debug .yadup-sqlPanel {
+  display: inline-block;
+  height: 300px; }
+#tracy-debug .yadup-controls {
+  width: 26em;
+  position: relative; }
+  #tracy-debug .yadup-controls .yadup-controls-header,
+  #tracy-debug .yadup-controls .yadup-controls-inner {
+    overflow-x: hidden;
+    overflow-y: scroll; }
+    #tracy-debug .yadup-controls .yadup-controls-header table,
+    #tracy-debug .yadup-controls .yadup-controls-inner table {
+      width: 100%; }
+      #tracy-debug .yadup-controls .yadup-controls-header table td,
+      #tracy-debug .yadup-controls .yadup-controls-header table th,
+      #tracy-debug .yadup-controls .yadup-controls-inner table td,
+      #tracy-debug .yadup-controls .yadup-controls-inner table th {
+        text-align: center;
+        vertical-align: middle;
+        width: 12% !important; }
+        #tracy-debug .yadup-controls .yadup-controls-header table td:first-child,
+        #tracy-debug .yadup-controls .yadup-controls-header table th:first-child,
+        #tracy-debug .yadup-controls .yadup-controls-inner table td:first-child,
+        #tracy-debug .yadup-controls .yadup-controls-inner table th:first-child {
+          width: 52% !important; }
+  #tracy-debug .yadup-controls .yadup-controls-header th:last-child {
+    cursor: pointer; }
+  #tracy-debug .yadup-controls .yadup-controls-inner {
+    height: 230px; }
+    #tracy-debug .yadup-controls .yadup-controls-inner thead * {
+      height: 0;
+      border: 0 none;
+      background: white; }
+    #tracy-debug .yadup-controls .yadup-controls-inner td {
+      cursor: pointer; }
+      #tracy-debug .yadup-controls .yadup-controls-inner td:first-child {
+        text-align: left; }
+      #tracy-debug .yadup-controls .yadup-controls-inner td:last-child {
+        cursor: default; }
+        #tracy-debug .yadup-controls .yadup-controls-inner td:last-child input {
+          cursor: pointer;
+          vertical-align: middle; }
+  #tracy-debug .yadup-controls .yadup-controls-buttons {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    cursor: default; }
+    #tracy-debug .yadup-controls .yadup-controls-buttons input[type="button"] {
+      background: #d99696;
+      border-radius: 4px;
+      box-shadow: 1px 1px lightgray;
+      color: black;
+      text-align: center;
+      padding: 2px 4px;
+      width: 49%;
+      cursor: pointer; }
+#tracy-debug .yadup-sqlPanel {
+  width: 500px;
+  vertical-align: top;
+  background: #fdf5ce;
+  border-radius: 4px;
+  box-shadow: 1px 1px lightgray; }
+  #tracy-debug .yadup-sqlPanel .yadup-sqlPanel-heading {
+    border-bottom: 1px solid gray;
+    padding-left: 0.5em; }
+    #tracy-debug .yadup-sqlPanel .yadup-sqlPanel-heading p {
+      margin: 0.4em 0; }
+      #tracy-debug .yadup-sqlPanel .yadup-sqlPanel-heading p span {
+        padding-left: 1em; }
+        #tracy-debug .yadup-sqlPanel .yadup-sqlPanel-heading p span:first-child {
+          padding-left: 0; }
+  #tracy-debug .yadup-sqlPanel .yadup-sqlPanel-query {
+    padding: 5px;
+    height: 90%; }
+    #tracy-debug .yadup-sqlPanel .yadup-sqlPanel-query .yadup-sqlPanel-query-inner {
+      width: 98%;
+      height: 93%;
+      margin-left: auto;
+      margin-right: auto; }
+      #tracy-debug .yadup-sqlPanel .yadup-sqlPanel-query .yadup-sqlPanel-query-inner textarea,
+      #tracy-debug .yadup-sqlPanel .yadup-sqlPanel-query .yadup-sqlPanel-query-inner code {
+        width: 100%;
+        height: 100%;
+        padding: 5px;
+        margin-left: -5px;
+        border: none;
+        border-radius: 4px;
+        background: white; }
+      #tracy-debug .yadup-sqlPanel .yadup-sqlPanel-query .yadup-sqlPanel-query-inner textarea {
+        display: none;
+        resize: none; }
+      #tracy-debug .yadup-sqlPanel .yadup-sqlPanel-query .yadup-sqlPanel-query-inner code {
+        display: block;
+        overflow: auto; }
+
+/*# sourceMappingURL=yadup.css.map */
