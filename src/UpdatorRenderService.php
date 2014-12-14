@@ -15,7 +15,7 @@ class UpdatorRenderService extends \Nette\Object {
 			throw new \Exception("Yadup config property 'dbConnection' is not of type \Nette\Database\Connection.");
 		}
 		if (!file_exists($sqlDir)) {
-			throw new \Exception("Please specify path to a directory with SQL updates.");
+			throw new \Exception("Specified path to a directory with SQL updates '{$sqlDir}' could not be found. Create it or specify a different one in config file.");
 			
 		}
 		$dbContext = new \Nette\Database\Context($dbConnection);
