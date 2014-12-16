@@ -2,26 +2,24 @@ $(function() {
 	
 	/**
 	 * Extension to JUSH - JavaScript Syntax Highlighter from jush.js 
+	 * git://git.code.sf.net/p/jush/git
+	 * Highlight text and preserve line endings
+	 * @param string
+	 * @param string
+	 * @param number number of spaces for tab, 0 for tab itself, defaults to 4
+	 * @return string
 	 */
-	var MyJush = $.extend(true, $.fn.jush.prototype, {
-		/** Highlight text and preserve line endings
-		 * @param string
-		 * @param string
-		 * @param number number of spaces for tab, 0 for tab itself, defaults to 4
-		 * @return string
-		 */
-		highlightTextPreserveLineEnd: function(language, text, tab_width) {
-			this.last_tag = '';
-			this.last_class = '';
-			var tab = '';
-			for (var i = (tab_width !== undefined ? tab_width : 4); i--; ) {
-				tab += ' ';
-			}
-			var s = jush.highlight(language, jush.html_entity_decode(text.replace(/<br(\s+[^>]*)?>/gi, '\n').replace(/<[^>]*>/g, '')))
-				.replace(/\t/g, tab.length ? tab : '\t').replace(/(^|\n| ) /g, '$1&nbsp;');
-			return '<span class="jush-' + language + '">' + s.replace(/\n/g, '<br />') + '</span>'; // span - enable style for class="language-"
+	jush.highlightTextPreserveLineEnd = function(language, text, tab_width) {
+		this.last_tag = '';
+		this.last_class = '';
+		var tab = '';
+		for (var i = (tab_width !== undefined ? tab_width : 4); i--; ) {
+			tab += ' ';
 		}
-	});
+		var s = jush.highlight(language, jush.html_entity_decode(text.replace(/<br(\s+[^>]*)?>/gi, '\n').replace(/<[^>]*>/g, '')))
+			.replace(/\t/g, tab.length ? tab : '\t').replace(/(^|\n| ) /g, '$1&nbsp;');
+		return '<span class="jush-' + language + '">' + s.replace(/\n/g, '<br />') + '</span>'; // span - enable style for class="language-"
+	};
 	
 	
 	var Elements = {};
@@ -65,7 +63,7 @@ $(function() {
 				inputTd.find("input:checked").show();
 				if (!payload.state) {
 					tr.find("td").css("background", "pink");
-					Elements.code.html(payload.message + MyJush.highlightTextPreserveLineEnd("sql", payload.sql));
+					Elements.code.html(payload.message + jush.highlightTextPreserveLineEnd("sql", payload.sql));
 					button.prop("disabled", false);
 				} else {
 					tr.find("td").css("background", "lightgreen");
@@ -125,7 +123,7 @@ $(function() {
 			SELECTED_ROW_NUMBER = tr.find("input").attr("name");
 			Elements.code.html(function() {
 				var sql = tr.find("input").data("sql");
-				return (typeof sql === "undefined") ? "" : MyJush.highlightTextPreserveLineEnd("sql", sql);
+				return (typeof sql === "undefined") ? "" : jush.highlightTextPreserveLineEnd("sql", sql);
 			});
 			Elements.pRun.find("span").each(function(i, e) {
 				var text = tr.find("td")[i].innerHTML;
