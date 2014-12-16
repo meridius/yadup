@@ -1,7 +1,3 @@
-/*
-* This file is the same as jush.css with exeption of added !important rule so it can override Tracy's defaults
-*/
-
 .jush { color: black !important; }
 .jush-htm_com, .jush-com, .jush-com_code, .jush-one, .jush-php_doc, .jush-php_com, .jush-php_one, .jush-js_one, .jush-js_doc { color: gray !important; }
 .jush-php, .jush-php_new, .jush-php_fun { color: #000033 !important; background-color: #FFF0F0 !important; }
@@ -16,6 +12,7 @@
 .jush-att, .jush-xml_att, .jush-att_js, .jush-att_css, .jush-att_http { color: teal !important; }
 .jush-att_quo, .jush-att_apo, .jush-att_val { color: purple !important; }
 .jush-ent { color: purple !important; }
+.jush-js_key, .jush-js_key .jush-quo, .jush-js_key .jush-apo { color: purple !important; }
 .jush-js_reg { color: navy !important; }
 .jush-php_sql .jush-php_quo, .jush-php_sql .jush-php_apo,
 .jush-php_sqlite .jush-php_quo, .jush-php_sqlite .jush-php_apo,
@@ -27,8 +24,10 @@
 .jush-num, .jush-clr { color: #007F7F !important; }
 
 .jush a { color: navy !important; }
-.jush a:hover { background-color: #cbe1e1 !important; } 
-.jush-sql a, .jush-sql_code a, .jush-sqlite a, .jush-pgsql a, .jush-mssql a, .jush-oracle a { font-weight: bold !important; }
+.jush a.jush-help { cursor: help !important; }
+.jush-sql a, .jush-sql_code a, .jush-sqlite a, .jush-pgsql a, .jush-mssql a, .jush-oracle a, .jush-simpledb a { font-weight: bold !important; }
 .jush-php_sql .jush-php_quo a, .jush-php_sql .jush-php_apo a { font-weight: normal !important; }
 .jush-tag a, .jush-att a, .jush-apo a, .jush-quo a, .jush-php_apo a, .jush-php_quo a, .jush-php_eot2 a { color: inherit !important; color: expression(parentNode.currentStyle.color) !important; }
 a.jush-custom:link, a.jush-custom:visited { font-weight: normal !important; color: inherit !important; color: expression(parentNode.currentStyle.color) !important; }
+
+.jush p { margin: 0 !important; }
