@@ -4,10 +4,10 @@ $(function() {
 	 * Extension to JUSH - JavaScript Syntax Highlighter from jush.js 
 	 * git://git.code.sf.net/p/jush/git
 	 * Highlight text and preserve line endings
-	 * @param string
-	 * @param string
-	 * @param number number of spaces for tab, 0 for tab itself, defaults to 4
-	 * @return string
+	 * @param {String} language Valid jush.highlight() language code
+	 * @param {String} text Text to highlight
+	 * @param {Integer} tab_width Number of spaces for tab, 0 for tab itself, defaults to 4
+	 * @returns {String}
 	 */
 	jush.highlightTextPreserveLineEnd = function(language, text, tab_width) {
 		this.last_tag = '';
@@ -36,14 +36,24 @@ $(function() {
 	Elements.pCreate = Elements.codePanel.find(".yadup-sqlPanel-heading-create");
 
 	var SELECTED_ROW_NUMBER = 0;
+	
+	var Colors = {};
+	Colors.none = "";
+	Colors.lightYellow = "#ffffdb";
+	Colors.orange = "orange";
+	Colors.pink = "pink";
+	Colors.lightgreen = "lightgreen";
 
 
 	var Worker = function() {
 
-		var _selectRow = function(rowNumber) {
-			Elements.list.find("tbody td").css("background", "");
+		var _selectRow = function(rowNumber, tr) {
+			Elements.list.find("tbody td").css("background", Colors.none);
 			Elements.list.find("tbody td input[name='" + rowNumber + "']").closest("tr")
-				.find("td").css("background", "#ffffdb");
+				.find("td").css("background", Colors.lightYellow);
+			if (typeof tr !== "undefined") {
+				tr.find("td").css("background", Colors.lightYellow);
+			}
 		};
 
 		var _doUpdate = function(filenames, button, origLength, queriesCount) {
@@ -58,15 +68,15 @@ $(function() {
 			var inputTd = tr.find("input:checked").closest("td");
 			inputTd
 				.find("input:checked").hide().end()
-				.css("background", "orange");
+				.css("background", Colors.orange);
 			$.post(link, data, function(payload) {
 				inputTd.find("input:checked").show();
 				if (!payload.state) {
-					tr.find("td").css("background", "pink");
+					tr.find("td").css("background", Colors.pink);
 					Elements.code.html(payload.message + jush.highlightTextPreserveLineEnd("sql", payload.sql));
 					button.prop("disabled", false);
 				} else {
-					tr.find("td").css("background", "lightgreen");
+					tr.find("td").css("background", Colors.lightgreen);
 					queriesCount += payload.queriesDone;
 					if (filenames.length > 0) {
 						_doUpdate(filenames, button, origLength, queriesCount);
@@ -84,7 +94,7 @@ $(function() {
 			var runButtons = Elements.buttons.find("[name='runUpdates'], [name='createUpdate']")
 				.add(Elements.code);
 			if (group === "create") {
-				Elements.list.find("tbody td").css("background", "");
+				Elements.list.find("tbody td").css("background", Colors.none);
 				createButtons.show();
 				runButtons.hide();
 				Elements.pCreate.show();
@@ -96,8 +106,6 @@ $(function() {
 				runButtons.show();
 				Elements.pCreate.hide();
 				Elements.pRun.show();
-			} else {
-				console.log("Invalid parameter in function showControls().");
 			}
 		};
 
@@ -123,13 +131,14 @@ $(function() {
 			SELECTED_ROW_NUMBER = tr.find("input").attr("name");
 			Elements.code.html(function() {
 				var sql = tr.find("input").data("sql");
-				return (typeof sql === "undefined") ? "" : jush.highlightTextPreserveLineEnd("sql", sql);
+				return (typeof sql === "undefined") ? "This update is not on disk." : jush.highlightTextPreserveLineEnd("sql", sql);
 			});
 			Elements.pRun.find("span").each(function(i, e) {
 				var text = tr.find("td")[i].innerHTML;
 				$(this).html(text);
 			});
 			showControls("run");
+			_selectRow(SELECTED_ROW_NUMBER, tr);
 		};
 
 		var saveUpdateFile = function(button) {
@@ -159,7 +168,7 @@ $(function() {
 				filenames.push($(this).data("filename"));
 			});
 
-			Elements.list.find("tbody td").css("background", "");
+			Elements.list.find("tbody td").css("background", Colors.none);
 			Elements.code.html("");
 			if (filenames.length > 0) {
 				button.prop("disabled", true);
