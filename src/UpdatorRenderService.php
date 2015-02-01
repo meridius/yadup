@@ -37,17 +37,16 @@ class UpdatorRenderService extends \Nette\Object {
 	}
 	
 	/**
-	 * Return updates' count wrapped in span tags.
+	 * Return textual representation of updates' count.
 	 * @param bool $showAll defaults to false meaning from last full update
 	 * @return string
 	 */
 	public function renderUpdatesCount($showAll = false) {
-		return 
-			'<span title="Updates in DB">' . 
-			$this->updateContainer->getCountDbUpdates($showAll) . '-</span>' .
+		$count = $this->updateContainer->getUpdatesCount($showAll);
+		return ($count->behind + $count->ahead === 0) ? "DB is current" :
+			'<span title="behind (on disk, not in DB)">' . $count->behind . '-</span>' .
 			' / ' .
-			'<span title="Updates on disk">' . 
-			$this->updateContainer->getCountFileUpdates($showAll) . '+</span>';
+			'<span title="ahead (in DB, not on disk)">' . $count->ahead . '+</span>';
 	}
 
 	/**
