@@ -2,7 +2,7 @@
 
 namespace Yadup;
 
-use Nette\Utils\Finder;
+use \Nette\Utils\Finder;
 
 /**
  * Used to find and store updates
@@ -14,7 +14,7 @@ class UpdateContainer extends \Nette\Object {
 	private $sqlExt;
 	private $dbUpdateTable;
 
-	/** @var array */
+	/** @var UpdateEntity[] */
 	private $updates = array();
 
 	/** @var \Nette\Database\Context */
@@ -80,9 +80,9 @@ class UpdateContainer extends \Nette\Object {
 	/**
 	 * Get found updates
 	 * @param boolean $all <br/>
-	 *  (true) - all dound updates <br/>
+	 *  (true) - all found updates <br/>
 	 *  (false) - updates beginning last full update; default
-	 * @return array of UpdateEntity
+	 * @return UpdateEntity[]
 	 */
 	public function getUpdates($all = false) {
 		if ($all) {
@@ -103,32 +103,18 @@ class UpdateContainer extends \Nette\Object {
 	}
 
 	/**
-	 * Count found updates in files
-	 * @param bool $all
-	 * @return int
-	 */
-	public function getCountFileUpdates($all = false) {
-		$updates = $this->getUpdates($all);
-		$count = 0;
-		foreach ($updates as $update) {
-			if ($update->inFile) {
-				$count++;
-			}
-		}
-		return $count;
-	}
-
-	/**
 	 * Count found updates in database
 	 * @param bool $all
-	 * @return int
+	 * @return UpdatesCountEntity
 	 */
-	public function getCountDbUpdates($all = false) {
+	public function getUpdatesCount($all = false) {
 		$updates = $this->getUpdates($all);
-		$count = 0;
+		$count = new UpdatesCountEntity();
 		foreach ($updates as $update) {
-			if ($update->inDb) {
-				$count++;
+			if ($update->inDb && !$update->inFile) {
+				$count->ahead++;
+			} else if (!$update->inDb && $update->inFile) {
+				$count->behind++;
 			}
 		}
 		return $count;
@@ -151,6 +137,7 @@ class UpdateContainer extends \Nette\Object {
 
 }
 
+
 /**
  * Entity of one found update
  */
@@ -167,4 +154,14 @@ class UpdateEntity extends \Nette\Object {
 		$this->dateTime = $dateTime;
 	}
 
+}
+
+
+class UpdatesCountEntity extends \Nette\Object {
+	
+	/** @var int */
+	public $ahead = 0;
+	/** @var int */
+	public $behind = 0;
+	
 }
