@@ -19,7 +19,7 @@
 		"nette/utils": "~2.2.0",
 		"nette/finder": "~2.2.0",
 		"tracy/tracy": "~2.2.0",
-		"nette/database": "~2.2"
+		"nette/database": "~2.2.0"
 	},
 	"autoload": {
 		"psr-4": {
