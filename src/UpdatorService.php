@@ -2,6 +2,8 @@
 
 namespace Yadup;
 
+use \Nette\Database;
+
 /**
  * Executive part of the updator
  */
@@ -18,13 +20,19 @@ class UpdatorService extends \Nette\Object {
 	/** @var \Nette\Database\Context */
 	private $db;
 
-	public function __construct($sqlDir, $sqlExt, $dbUpdateTable, 
-		\Nette\Database\Connection $dbConnection, $definerUser, $definerHost
+	public function __construct(
+		$sqlDir, 
+		$sqlExt, 
+		$dbUpdateTable, 
+		$definerUser, 
+		$definerHost,
+		Database\Connection $dbConnection, 
+		Database\IStructure $structure
 	) {
 		$this->sqlDir = $sqlDir . DIRECTORY_SEPARATOR;
 		$this->sqlExt = $sqlExt;
 		$this->dbUpdateTable = $dbUpdateTable;
-		$this->db = new \Nette\Database\Context($dbConnection);
+		$this->db = new Database\Context($dbConnection, $structure);
 		$this->dbName = $this->getDbNameFromDsn($dbConnection->getDsn());
 		$this->definerUser = $definerUser;
 		$this->definerHost = $definerHost;

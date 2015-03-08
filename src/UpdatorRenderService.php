@@ -2,6 +2,8 @@
 
 namespace Yadup;
 
+use \Nette\Database;
+
 /**
  * Render info about all found updates
  */
@@ -10,15 +12,17 @@ class UpdatorRenderService extends \Nette\Object {
 	/** @var UpdateContainer */
 	private $updateContainer;
 	
-	public function __construct($sqlDir, $sqlExt, $dbUpdateTable, $dbConnection) {
-		if (!($dbConnection instanceof \Nette\Database\Connection)) {
-			throw new \Exception("Yadup config property 'dbConnection' is not of type \Nette\Database\Connection.");
-		}
+	public function __construct(
+		$sqlDir, 
+		$sqlExt, 
+		$dbUpdateTable, 
+		Database\Connection $dbConnection, 
+		Database\IStructure $structure
+	) {
 		if (!file_exists($sqlDir)) {
 			throw new \Exception("Specified path to a directory with SQL updates '{$sqlDir}' could not be found. Create it or specify a different one in config file.");
-			
 		}
-		$dbContext = new \Nette\Database\Context($dbConnection);
+		$dbContext = new Database\Context($dbConnection, $structure);
 		$this->updateContainer = new UpdateContainer($sqlDir, $sqlExt, $dbUpdateTable, $dbContext);
 		$this->findUpdates();
 	}
