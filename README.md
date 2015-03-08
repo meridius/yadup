@@ -4,6 +4,7 @@
 
 ## How to
 **For Nette 2.2 support please see the bottom.**
+
 1. Use the following [Composer](https://packagist.org/) command in your existing project to add Yadup to it:  
 
         composer require meridius/yadup
