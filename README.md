@@ -44,7 +44,7 @@ Because of incompatible changes in Nette/Database 2.3 the support for 2.2 versio
 
 
 ### Installation
-        composer require "meridius/yadup ~1.0"
+        composer require "meridius/yadup ~1.0.0"
 
 
 ### Further configuration
