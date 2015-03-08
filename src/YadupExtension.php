@@ -7,7 +7,7 @@ class YadupExtension extends \Nette\DI\CompilerExtension {
 	public $defaults = array(
 		"dbUpdateTable" => "_db_update",
 		"dbConnection" => "@nette.database.default",
-		"definerUser" => "", // to change definer it must be previously definened in query
+		"definerUser" => "", // definer can be changed only in queries that already have one defined
 		"definerHost" => "",
 		"sqlDir" => "%appDir%/sql", // directory with sql script files
 		"sqlExt" => ".sql", // extension of sql files; with "dot"
