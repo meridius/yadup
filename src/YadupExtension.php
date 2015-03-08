@@ -6,7 +6,7 @@ class YadupExtension extends \Nette\DI\CompilerExtension {
 
 	public $defaults = array(
 		"dbUpdateTable" => "_db_update",
-		"dbConnection" => "@nette.database.default",
+		"dbConnection" => "@database.default",
 		"definerUser" => "", // definer can be changed only in queries that already have one defined
 		"definerHost" => "",
 		"sqlDir" => "%appDir%/sql", // directory with sql script files
@@ -21,7 +21,7 @@ class YadupExtension extends \Nette\DI\CompilerExtension {
 		parent::loadConfiguration();
 		$config = $this->getConfig($this->defaults);
 		$builder = $this->getContainerBuilder();
-
+		
 		$builder->addDefinition($this->prefix('Panel'))
 			->setClass('Yadup\Panel', array($config))
 			->addSetup('Tracy\Debugger::getBar()->addPanel(?)', array('@self'))
@@ -32,9 +32,10 @@ class YadupExtension extends \Nette\DI\CompilerExtension {
 				$config["sqlDir"],
 				$config["sqlExt"],
 				$config["dbUpdateTable"],
-				$config["dbConnection"],
 				$config["definerUser"],
 				$config["definerHost"],
+				$config["dbConnection"],
+				$config["dbConnection"] . ".structure",
 			));
 		
 		$builder->addDefinition($this->prefix("UpdatorRenderService"))
@@ -43,6 +44,7 @@ class YadupExtension extends \Nette\DI\CompilerExtension {
 				$config["sqlExt"],
 				$config["dbUpdateTable"],
 				$config["dbConnection"],
+				$config["dbConnection"] . ".structure",
 			));
 	}
 
